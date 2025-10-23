@@ -35,7 +35,9 @@ Route::get('/', [HouseHomeController::class, 'index'])->name('home.index');
 Route::get('/house', [HouseHomeController::class, 'house'])->name('home.house');
 Route::get('/contact', [HouseHomeController::class, 'contact'])->name('home.contact');
 Route::post('/contact', [HouseHomeController::class, 'storeContact'])->name('contact.store');
-Route::get('/about',function () {return view('about');})->name('home.about');
+Route::get('/about', function () {
+    return view('about');
+})->name('home.about');
 Route::get('/house-detail/{house_id}', [HouseHomeController::class, 'show'])->name('home.show');
 
 
@@ -54,7 +56,6 @@ Route::group(['middleware' => 'tenant'], function () {
     Route::post('/vnpay/pay/service', [PaymentServiceController::class, 'payService'])->name('vnpay.pay.service');
     Route::get('/vnpay/return/service', [PaymentServiceController::class, 'returnService'])->name('vnpay.return.service');
     Route::get('/payment-us', [HistoryBillController::class, 'index'])->name('payment.list.user');
-
 });
 Route::group(['middleware' => 'admin'], function () {
 
@@ -63,7 +64,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/dashboard', [DasboardController::class, 'index'])->name('dashboard');
 
-  //Area
+    //Area
 
     Route::get('/area-list', [AreaController::class, 'index'])->name('area.list');
     Route::get('/add-areas', [AreaController::class, 'create'])->name('areas.create');
@@ -72,8 +73,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/edit-areas/{id}', [AreaController::class, 'edit'])->name('areas.edit');
     Route::put('/edit-areas/{id}', [AreaController::class, 'update'])->name('areas.update');
     //User
-    Route::get('/user-list',[UserController::class, 'index'])->name('user.list');
-    Route::get('/add-users',[UserController::class, 'create'])->name('users.create');
+    Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
+    Route::get('/add-users', [UserController::class, 'create'])->name('users.create');
     Route::post('/add-users', [UserController::class, 'store'])->name('users.store');
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/edit-users/{id}', [UserController::class, 'edit'])->name('users.edit');
@@ -103,7 +104,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/tenant-detail/{id}', [TenantDetailController::class, 'destroy'])->name('tenant-detail.destroy');
 
     //Service
-    Route::get('/service-list',[ServicesController::class, 'index'])->name('service.list');
+    Route::get('/service-list', [ServicesController::class, 'index'])->name('service.list');
     Route::get('/add-service', [ServicesController::class, 'create'])->name('service.create');
     Route::post('/add-service', [ServicesController::class, 'store'])->name('service.store');
     Route::get('/edit-service/{id}', [ServicesController::class, 'edit'])->name('service.edit');
@@ -113,32 +114,32 @@ Route::group(['middleware' => 'admin'], function () {
 
 
     //Penal
-   Route::get('/penalty-list',[PenaltyController::class, 'index'])->name('penalty.list');
-   Route::get('/add-penalty', [PenaltyController::class, 'create'])->name('penalty.create');
-   Route::post('/add-penalty', [PenaltyController::class, 'store'])->name('penalty.store');
-   Route::get('/edit-penalty/{id}', [PenaltyController::class, 'edit'])->name('penalty.edit');
-   Route::put('/edit-penalty/{id}', [PenaltyController::class, 'update'])->name('penalty.update');
-   Route::delete('/delete-penalty/{id}', [PenaltyController::class, 'destroy'])->name('penalty.destroy');
+    Route::get('/penalty-list', [PenaltyController::class, 'index'])->name('penalty.list');
+    Route::get('/add-penalty', [PenaltyController::class, 'create'])->name('penalty.create');
+    Route::post('/add-penalty', [PenaltyController::class, 'store'])->name('penalty.store');
+    Route::get('/edit-penalty/{id}', [PenaltyController::class, 'edit'])->name('penalty.edit');
+    Route::put('/edit-penalty/{id}', [PenaltyController::class, 'update'])->name('penalty.update');
+    Route::delete('/delete-penalty/{id}', [PenaltyController::class, 'destroy'])->name('penalty.destroy');
     Route::post('/penalty/{id}/update-status', [PenaltyController::class, 'updateStatus'])->name('penalty.updateStatus');
 
-   //Deposit
-    Route::get('/deposit_list',[DepositController::class, 'index'])->name('deposit.list');
-    Route::get('/add-deposit',[DepositController::class,'create']) ->name('deposit.create');
-    Route::post('/add-deposit',[DepositController::class,'store']) ->name('deposit.store');
+    //Deposit
+    Route::get('/deposit_list', [DepositController::class, 'index'])->name('deposit.list');
+    Route::get('/add-deposit', [DepositController::class, 'create'])->name('deposit.create');
+    Route::post('/add-deposit', [DepositController::class, 'store'])->name('deposit.store');
     Route::get('/get-house-name/{house_id}', [DepositController::class, 'getHouseName']);
     Route::delete('/delete-deposit/{id}', [DepositController::class, 'destroy'])->name('deposit.destroy');
     Route::post('/deposit/{deposit_id}/update-status', [DepositController::class, 'updateStatus'])->name('deposit.updateStatus');
 
     //Water And Electricty
-    Route::get('/get-bills-list',[BillController::class, 'index'])->name('bills.list');
+    Route::get('/get-bills-list', [BillController::class, 'index'])->name('bills.list');
 
     Route::get('/bill/create', [BillController::class, 'createBill'])->name('bill.create');
     Route::post('/bill/store', [BillController::class, 'storeBill'])->name('bill.store');
-    Route::get('/bills-list',[BillController::class, 'bill'])->name('bill.list');
+    Route::get('/bills-list', [BillController::class, 'bill'])->name('bill.list');
     Route::post('/bill/update-status', [BillController::class, 'updateStatus'])->name('bill.updateStatus');
 
     //contact us
-    Route::get('/contact-list',[ContactController::class, 'index'])->name('contact.list');
+    Route::get('/contact-list', [ContactController::class, 'index'])->name('contact.list');
     //Payment
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.list');
 });
