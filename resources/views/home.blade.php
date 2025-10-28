@@ -10,8 +10,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
-    {{-- <!-- <link rel="shortcut icon" href="{{asset("/assets/images/roommate.png")}}" />--}}
-    {{-- <link rel="shortcut icon" href="{{asset("/assets/images/roommate.png")}}" /> -->--}}
+    {{--    <!-- <link rel="shortcut icon" href="{{asset("/assets/images/roommate.png")}}" />--}}
+    {{--    <link rel="shortcut icon" href="{{asset("/assets/images/roommate.png")}}" /> -->--}}
     <link rel="shortcut icon" href="{{asset('/assets/images/roommate.png')}}">
 
     <link rel="stylesheet" href="{{asset('/assetsHome/fonts/icomoon/style.css')}}">
@@ -35,8 +35,8 @@
     </div>
 
     <nav class="site-nav">
-        <div class="container">
-            <div class="menu-bg-wrap">
+        <div class="container" >
+            <div class="menu-bg-wrap" >
                 <div class="site-navigation">
                     <a href="{{route('home.index')}}" class="logo m-0 float-start">
                         RoomMate
@@ -51,7 +51,7 @@
 
                         </li>
                         <li class="{{ Route::currentRouteName() == 'home.contact' ? 'active' : '' }}">
-                            <a href="{{route('home.contact')}}">Liên Hệ</a>
+                        <a href="{{route('home.contact')}}">Liên Hệ</a>
                         </li>
                         <li class="{{ Route::currentRouteName() == 'home.about' ? 'active' : '' }}">
                             <a href="{{route('home.about')}}">Giới Thiệu</a>
@@ -109,11 +109,11 @@
                         <div class="property-slider">
                             @foreach ($houses as $house)
                             <div class="property-item">
-                                {{-- <a href="{{ route('property.details', $house->house_id) }}"
+                                {{--                                <a href="{{ route('property.details', $house->house_id) }}"
                                 class="img">--}}
 
                                 <a href="{{ route('home.show', $house->house_id) }}" class="img">
-                                    <img style="width: 100%; height: 400px; " src="{{asset($house->house_image)}}" alt="{{ $house->name }}"
+                                    <img style="width: 100%; height: 400px; " src="{{ asset($house->house_image ?? '/assetsHome/images/default.jpg') }}" alt="{{ $house->name }}"
                                         class="img-fluid" />
                                 </a>
 
@@ -231,7 +231,7 @@
                 <div class="testimonial-slider">
                     <div class="item">
                         <div class="testimonial">
-                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}"  alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                             <div class="rate">
                                 <span class="icon-star text-warning"></span>
                                 <span class="icon-star text-warning"></span>
@@ -254,7 +254,7 @@
 
                     <div class="item">
                         <div class="testimonial">
-                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}"  alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                             <div class="rate">
                                 <span class="icon-star text-warning"></span>
                                 <span class="icon-star text-warning"></span>
@@ -277,7 +277,7 @@
 
                     <div class="item">
                         <div class="testimonial">
-                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}"  alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                             <div class="rate">
                                 <span class="icon-star text-warning"></span>
                                 <span class="icon-star text-warning"></span>
@@ -300,7 +300,7 @@
 
                     <div class="item">
                         <div class="testimonial">
-                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                            <img src="{{asset('/assets/images/avatars/avatar-me.png')}}"  alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                             <div class="rate">
                                 <span class="icon-star text-warning"></span>
                                 <span class="icon-star text-warning"></span>
@@ -439,7 +439,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="h-100 person">
-                        <img style="height: 27%" src="{{asset('/assets/images/avatars/z5913516510676_a6e49d0dd874b952d9253eb039ee7bc8.jpg')}}" alt="Image" class="img-fluid" />
+                        <img  style="height: 27%" src="{{asset('/assets/images/avatars/z5913516510676_a6e49d0dd874b952d9253eb039ee7bc8.jpg')}}" alt="Image" class="img-fluid" />
 
                         <div class="person-contents">
                             <h2 class="mb-0"><a href="#">Đặng Hồng Quân</a></h2>
@@ -469,7 +469,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="h-100 person">
-                        <img style="height: 27%" src="{{asset('/assets/images/avatars/z5913516510676_a6e49d0dd874b952d9253eb039ee7bc8.jpg')}}" alt="Image" class="img-fluid" />
+                        <img  style="height: 27%" src="{{asset('/assets/images/avatars/z5913516510676_a6e49d0dd874b952d9253eb039ee7bc8.jpg')}}" alt="Image" class="img-fluid" />
 
                         <div class="person-contents">
                             <h2 class="mb-0"><a href="#">Đặng Hồng Quân</a></h2>
@@ -496,8 +496,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                </div><div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="h-100 person">
                         <img style="height: 27%" src="{{asset('/assets/images/avatars/z5913516510676_a6e49d0dd874b952d9253eb039ee7bc8.jpg')}}" alt="Image" class="img-fluid" />
 
@@ -633,21 +632,20 @@
     <script src="{{asset('/assetsHome/js/counter.js')}}"></script>
     <script src="{{asset('/assetsHome/js/custom.js')}}"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var menuItems = document.querySelectorAll(".nav-link");
+    document.addEventListener("DOMContentLoaded", function() {
+        var menuItems = document.querySelectorAll(".nav-link");
 
-            var currentUrl = window.location.href;
+        var currentUrl = window.location.href;
 
-            menuItems.forEach(function(item) {
-                if (currentUrl === item.href) {
-                    document.querySelectorAll(".nav-link").forEach(function(link) {
-                        link.classList.remove("active");
-                    });
-                    item.classList.add("active");
-                }
-            });
+        menuItems.forEach(function(item) {
+            if (currentUrl === item.href) {
+                document.querySelectorAll(".nav-link").forEach(function(link) {
+                    link.classList.remove("active");
+                });
+                item.classList.add("active");
+            }
         });
+    });
     </script>
 </body>
-
 </html>
