@@ -132,20 +132,20 @@
                 <div class="d-block agent-box p-5">
                     <div class="img mb-4">
                         <img
-                            src="{{ $house->user_avatar ? $house->user_avatar : asset('/assetsHome/images/person_2-min.jpg') }}"
+                            src="{{ $house->user_avatar ? asset($house->user_avatar) : asset('/assetsHome/images/person_2-min.jpg') }}"
                             style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"
                             alt="User Avatar"
                         />
 
                     </div>
                     <div class="text">
-                        <h3 class="mb-0">{{$house->user_name}}</h3>
-                        <div class="meta mb-3 mt-2">{{$house->user_note}}</div>
+                        <h3 class="mb-0">{{$house->user_name ?? 'N/A'}}</h3>
+                        <div class="meta mb-3 mt-2">{{$house->user_note ?? 'N/A'}}</div>
                         <p>
-                           Liên hệ: {{$house->user_email}}
+                           Liên hệ: {{$house->user_email ?? 'N/A'}}
                         </p>
                         <p>
-                            Số điện thoại: {{$house->user_phone}}
+                            Số điện thoại: {{$house->user_phone ?? 'N/A'}}
                         </p>
                         <ul class="list-unstyled social dark-hover d-flex">
                             <li class="me-1">
