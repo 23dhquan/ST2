@@ -109,9 +109,9 @@
                 <div class="img-property-slide-wrap">
                     <div class="img-property-slide">
                         @forelse ($house->images as $image)
-                            <img style="height: 700px !important" src="{{ asset($image->image_path) }}" alt="Image" class="img-fluid" />
+                            <img style="height: 700px !important" src="{{ asset($image->image_path) }}" alt="{{ $house->name }} - ảnh {{ $loop->iteration }}" class="img-fluid" loading="lazy" />
                         @empty
-                            <img src="{{ asset('/assetsHome/images/default.jpg') }}" alt="No Image" class="img-fluid" />
+                            <img src="{{ asset('/assetsHome/images/default.jpg') }}" alt="No Image" class="img-fluid" loading="lazy" />
                         @endforelse
                     </div>
                 </div>
@@ -122,10 +122,16 @@
                 <h2 class="heading text-primary">{{ $house->name }}</h2>
                 <p class="meta">{{ $house->area_name }}, {{ $house->area_address }}</p>
 
+                <div class="mb-2">
+                    <span class="badge {{ $house->is_rented ? 'bg-danger' : 'bg-success' }}">
+                        {{ $house->is_rented ? 'Đã thuê' : 'Còn trống' }}
+                    </span>
+                </div>
+
                 <p style="margin-top: -10px; white-space: pre-line;" class="d-block text-black-50 mb-2">{{ $house->description }}</p>
 
                 <!-- Thông tin thêm -->
-                <h3><strong>Giá Tiền:</strong> ${{ number_format($house->price, 0, '.', ',') }}</h3>
+                <h3><strong>Giá Tiền:</strong> ${{ number_format($house->price, 0, '.', ',') }} <small class="text-muted">/tháng</small></h3>
 
 
                 <!-- Thông tin đại lý -->
@@ -142,10 +148,20 @@
                         <h3 class="mb-0">{{$house->user_name ?? 'N/A'}}</h3>
                         <div class="meta mb-3 mt-2">{{$house->user_note ?? 'N/A'}}</div>
                         <p>
-                           Liên hệ: {{$house->user_email ?? 'N/A'}}
+                            Liên hệ:
+                            @if (!empty($house->user_email))
+                                <a href="mailto:{{ $house->user_email }}">{{ $house->user_email }}</a>
+                            @else
+                                N/A
+                            @endif
                         </p>
                         <p>
-                            Số điện thoại: {{$house->user_phone ?? 'N/A'}}
+                            Số điện thoại:
+                            @if (!empty($house->user_phone))
+                                <a href="tel:{{ preg_replace('/\s+/', '', $house->user_phone) }}">{{ $house->user_phone }}</a>
+                            @else
+                                N/A
+                            @endif
                         </p>
                         <ul class="list-unstyled social dark-hover d-flex">
                             <li class="me-1">
