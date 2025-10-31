@@ -21,9 +21,8 @@
     <link rel="stylesheet" href="{{asset('/assetsHome/css/style.css')}}">
 
 
-    <title>RoomMate - Home</title>
+    <title>RoomMate - Contact</title>
 </head>
-
 <body>
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -35,12 +34,10 @@
 </div>
 
 <nav class="site-nav">
-    <div class="container" >
-        <div class="menu-bg-wrap" >
+    <div class="container">
+        <div class="menu-bg-wrap">
             <div class="site-navigation">
-                <a href="{{route('home.index')}}" class="logo m-0 float-start">
-                    RoomMate
-                </a>
+                <a  href="{{route('home.index')}}" class="logo m-0 float-start">RommMate</a>
 
                 <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
                     <li class="{{ Route::currentRouteName() == 'home.index' ? 'active' : '' }}">
@@ -57,9 +54,13 @@
                         <a href="{{route('home.about')}}">Giới Thiệu</a>
                     </li>
                 </ul>
-                <a href="#"
-                   class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-                   data-toggle="collapse" data-target="#main-navbar">
+
+                <a
+                    href="#"
+                    class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                    data-toggle="collapse"
+                    data-target="#main-navbar"
+                >
                     <span></span>
                 </a>
             </div>
@@ -69,14 +70,12 @@
 
 <div
     class="hero page-inner overlay"
-    style="background-image: url('{{asset('/assetsHome/images/hero_bg_3.jpg')}}')"
+    style="background-image: url('{{asset('/assetsHome/images/hero_bg_1.jpg')}}')"
 >
     <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-9 text-center mt-5">
-                <h1 class="heading" data-aos="fade-up">
-                    Chi Tiết Nhà Thuê
-                </h1>
+                <h1 class="heading" data-aos="fade-up">Liên Hệ</h1>
 
                 <nav
                     aria-label="breadcrumb"
@@ -85,14 +84,11 @@
                 >
                     <ol class="breadcrumb text-center justify-content-center">
                         <li class="breadcrumb-item"><a href="{{route('home.index')}}">Trang Chủ</a></li>
-                        <li class="breadcrumb-item">
-                            <a href="{{route('home.house')}}">Nhà Thuê</a>
-                        </li>
                         <li
                             class="breadcrumb-item active text-white-50"
                             aria-current="page"
                         >
-                            {{$house->name}}
+                           Liên Hệ
                         </li>
                     </ol>
                 </nav>
@@ -103,86 +99,128 @@
 
 <div class="section">
     <div class="container">
-        <div class="row justify-content-between">
-            <!-- Hiển thị hình ảnh -->
-            <div class="col-lg-7">
-                <div class="img-property-slide-wrap">
-                    <div class="img-property-slide">
-                        @forelse ($house->images as $image)
-                            <img style="height: 700px !important" src="{{ asset($image->image_path) }}" alt="{{ $house->name }} - ảnh {{ $loop->iteration }}" class="img-fluid" loading="lazy" />
-                        @empty
-                            <img src="{{ asset('/assetsHome/images/default.jpg') }}" alt="No Image" class="img-fluid" loading="lazy" />
-                        @endforelse
+        <div class="row">
+            <div
+                class="col-lg-4 mb-5 mb-lg-0"
+                data-aos="fade-up"
+                data-aos-delay="100"
+            >
+                <div class="contact-info">
+                    <div class="address mt-2">
+                        <i class="icon-room"></i>
+                        <h4 class="mb-2">Địa Chỉ:</h4>
+                        <p>
+                            1046 Tân Thanh B, Cần Giuộc<br />
+                            Long An
+                        </p>
+                    </div>
+
+                    <div class="open-hours mt-4">
+                        <i class="icon-clock-o"></i>
+                        <h4 class="mb-2">Mở Cửa:</h4>
+                        <p>
+                            T2-T6:<br />
+                            07:00 - 16:00
+                        </p>
+                    </div>
+
+                    <div class="email mt-4">
+                        <i class="icon-envelope"></i>
+                        <h4 class="mb-2">Email:</h4>
+                        <p>dhquan.pv@gmail.com</p>
+                    </div>
+
+                    <div class="phone mt-4">
+                        <i class="icon-phone"></i>
+                        <h4 class="mb-2">Điện Thoại:</h4>
+                        <p>+84 334 205 811</p>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                <form action="{{ route('contact.store') }}" method="POST" id="contact-form">
+                    @csrf <!-- Thêm CSRF token -->
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Your Name"
+                                name="name"
+                                value="{{ old('name') }}"
+                                required
+                            />
+                            @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input
+                                type="email"
+                                class="form-control"
+                                placeholder="Your Email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required
+                            />
+                            @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Subject"
+                                name="title"
+                                value="{{ old('title') }}"
+                            />
+                            @error('title')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-12 mb-3">
+                <textarea
+                    name="message"
+                    cols="30"
+                    rows="7"
+                    class="form-control"
+                    placeholder="Message"
+                    required
+                >{{ old('message') }}</textarea>
+                            @error('message')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
-            <!-- Hiển thị thông tin căn nhà -->
-            <div class="col-lg-4">
-                <h2 class="heading text-primary">{{ $house->name }}</h2>
-                <p class="meta">{{ $house->area_name }}, {{ $house->area_address }}</p>
-
-                <div class="mb-2">
-                    <span class="badge {{ $house->is_rented ? 'bg-danger' : 'bg-success' }}">
-                        {{ $house->is_rented ? 'Đã thuê' : 'Còn trống' }}
-                    </span>
-                </div>
-
-                <p style="margin-top: -10px; white-space: pre-line;" class="d-block text-black-50 mb-2">{{ $house->description }}</p>
-
-                <!-- Thông tin thêm -->
-                <h3><strong>Giá Tiền:</strong> ${{ number_format($house->price, 0, '.', ',') }} <small class="text-muted">/tháng</small></h3>
-
-
-                <!-- Thông tin đại lý -->
-                <div class="d-block agent-box p-5">
-                    <div class="img mb-4">
-                        <img
-                            src="{{ $house->user_avatar ? asset($house->user_avatar) : asset('/assetsHome/images/person_2-min.jpg') }}"
-                            style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"
-                            alt="User Avatar"
-                        />
-
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" id="contact-submit">Gửi</button>
+                        </div>
                     </div>
-                    <div class="text">
-                        <h3 class="mb-0">{{$house->user_name ?? 'N/A'}}</h3>
-                        <div class="meta mb-3 mt-2">{{$house->user_note ?? 'N/A'}}</div>
-                        <p>
-                            Liên hệ:
-                            @if (!empty($house->user_email))
-                                <a href="mailto:{{ $house->user_email }}">{{ $house->user_email }}</a>
-                            @else
-                                N/A
-                            @endif
-                        </p>
-                        <p>
-                            Số điện thoại:
-                            @if (!empty($house->user_phone))
-                                <a href="tel:{{ preg_replace('/\s+/', '', $house->user_phone) }}">{{ $house->user_phone }}</a>
-                            @else
-                                N/A
-                            @endif
-                        </p>
-                        <ul class="list-unstyled social dark-hover d-flex">
-                            <li class="me-1">
-                                <a href="#"><span class="icon-instagram"></span></a>
-                            </li>
-                            <li class="me-1">
-                                <a href="#"><span class="icon-twitter"></span></a>
-                            </li>
-                            <li class="me-1">
-                                <a href="#"><span class="icon-facebook"></span></a>
-                            </li>
-                            <li class="me-1">
-                                <a href="#"><span class="icon-linkedin"></span></a>
-                            </li>
+                </form>
+
+                <!-- Hiển thị thông báo lỗi/success -->
+                @if (session('success'))
+                    <div class="alert alert-success mt-3">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
                         </ul>
                     </div>
-                </div>
+                @endif
             </div>
+
         </div>
     </div>
 </div>
+<!-- /.untree_co-section -->
 
 <div class="site-footer">
     <div class="container">
@@ -263,6 +301,13 @@
 
         <div class="row mt-5">
             <div class="col-12 text-center">
+                <!--
+              **==========
+              NOTE:
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/
+              **==========
+            -->
+
                 <p>
                     Copyright &copy;
                     <script>
@@ -274,7 +319,11 @@
             </div>
         </div>
     </div>
+    <!-- /.container -->
 </div>
+<!-- /.site-footer -->
+
+<!-- Preloader -->
 <div id="overlayer"></div>
 <div class="loader">
     <div class="spinner-border" role="status">
@@ -282,12 +331,14 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="{{asset('/assetsHome/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('/assetsHome/js/tiny-slider.js')}}"></script>
 <script src="{{asset('/assetsHome/js/aos.js')}}"></script>
 <script src="{{asset('/assetsHome/js/navbar.js')}}"></script>
 <script src="{{asset('/assetsHome/js/counter.js')}}"></script>
 <script src="{{asset('/assetsHome/js/custom.js')}}"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var menuItems = document.querySelectorAll(".nav-link");
@@ -304,5 +355,19 @@
         });
     });
 </script>
+<script>
+    // Ngăn gửi trùng lặp và hiển thị trạng thái đang gửi
+    (function() {
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('contact-submit');
+        if (form && submitBtn) {
+            form.addEventListener('submit', function () {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Đang gửi...';
+            });
+        }
+    })();
+</script>
 </body>
+
 </html>
